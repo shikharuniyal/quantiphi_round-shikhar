@@ -15,7 +15,9 @@ module.exports = {
   openaiApiKey: secrets.openaiApiKey,
   mongoUri: secrets.mongoUri,
   useMockAI: secrets.useMockAI === true, // demo mode without OpenAI credits
-  openaiModel: "gpt-4o-mini",
+  // any OpenAI-compatible provider works (OpenAI, NVIDIA, ...), just change these in secrets.json
+  openaiBaseUrl: secrets.openaiBaseUrl || "https://api.openai.com/v1",
+  openaiModel: secrets.openaiModel || "gpt-4o-mini",
   port: 5000,
   maxHistoryMessages: 20, // how many old messages are sent to OpenAI
   maxMessageLength: 4000,

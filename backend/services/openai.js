@@ -3,7 +3,10 @@ const config = require("../config/config");
 const { getSystemInstruction } = require("./tone");
 const { mockStream } = require("./mockAI");
 
-const client = new OpenAI({ apiKey: config.openaiApiKey });
+const client = new OpenAI({
+  apiKey: config.openaiApiKey,
+  baseURL: config.openaiBaseUrl,
+});
 
 // builds the messages array: system message first, then old messages
 function buildMessages(history, tone) {

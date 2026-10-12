@@ -57,10 +57,14 @@ You need Node.js and MongoDB running on `localhost:27017`.
    ```json
    {
      "openaiApiKey": "sk-...",
+     "openaiBaseUrl": "https://api.openai.com/v1",
+     "openaiModel": "gpt-4o-mini",
      "mongoUri": "mongodb://127.0.0.1:27017/quantiphi_chat",
      "useMockAI": false
    }
    ```
+
+   The backend uses the OpenAI Chat Completions API. Any OpenAI-compatible provider works by changing `openaiBaseUrl` and `openaiModel`. For example, NVIDIA: `https://integrate.api.nvidia.com/v1` with `meta/llama-3.2-11b-vision-instruct`.
 
    Set `"useMockAI": true` to try the app without OpenAI credits. Replies are then canned text marked "Demo mode".
 
