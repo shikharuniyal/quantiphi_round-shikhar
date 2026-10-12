@@ -85,3 +85,14 @@ while (true) {
 | 400 | `message` missing, or bad id |
 | 404 | conversation not found |
 | 500 | server or OpenAI problem |
+
+## Extra endpoints
+
+| Method | Route | Body | Returns |
+|--------|-------|------|---------|
+| POST | `/api/chat/regenerate` | `{ conversationId, tone? }` | Same SSE stream as `/api/chat`. Replaces the last AI reply |
+| GET | `/api/conversations?q=word` | none | Only chats whose title or messages contain the word |
+
+## Demo mode
+
+Set `"useMockAI": true` in `secrets/secrets.json` to test without OpenAI credits. Replies are canned text marked "Demo mode".
