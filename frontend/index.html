@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Chat Assistant</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- History sidebar -->
+      <aside class="sidebar">
+        <button id="newChatBtn" class="new-chat-btn">+ New chat</button>
+        <input id="searchInput" class="search-input" type="text" placeholder="Search chats..." />
+        <ul id="historyList" class="history-list"></ul>
+      </aside>
+
+      <!-- Chat area -->
+      <main class="chat">
+        <header class="chat-header">
+          <h1 id="chatTitle">New chat</h1>
+          <div class="tone-toggle">
+            <span>Tone:</span>
+            <div id="toneButtons"></div>
+          </div>
+        </header>
+
+        <div id="messages" class="messages"></div>
+
+        <div class="chat-footer">
+          <button id="regenerateBtn" class="regenerate-btn" hidden>Regenerate reply in selected tone</button>
+          <form id="chatForm" class="chat-form">
+            <textarea id="messageInput" rows="1" placeholder="Type your message..."></textarea>
+            <button id="sendBtn" type="submit">Send</button>
+          </form>
+        </div>
+      </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
