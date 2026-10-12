@@ -9,6 +9,35 @@ AI Chat Assistant: a chat app with streaming replies, saved history and a tone t
 - **Database:** MongoDB (Mongoose)
 - **AI:** OpenAI Chat Completions API (also works with NVIDIA's OpenAI-compatible API)
 
+## Alternative design: brutalism theme
+
+A second version of the frontend lives in the [`brutalism-ui`](https://github.com/shikharuniyal/quantiphi_round-shikhar/tree/brutalism-ui) branch. It has a bold "brutalism" look: thick black borders, hard shadows, flat colors and big uppercase type.
+
+Only the styling is different. The backend, the features and the way you use the app are exactly the same as in `main`.
+
+Reply streaming in:
+
+![Brutalism theme while a reply is streaming](Untitled.png)
+
+A finished chat, opened from the history sidebar:
+
+![Brutalism theme showing a full chat](Untitled2.png)
+
+### How to use the brutalism version
+
+1. Switch to the branch:
+
+   ```
+   git checkout brutalism-ui
+   ```
+
+2. Start the app the normal way (see "How to run" below). If the server is already running, there is no need to restart it.
+3. Open `http://localhost:5000` and press Ctrl+F5 to load the new styles.
+
+To go back to the default design, run `git checkout main` and press Ctrl+F5 again.
+
+The theme loads its fonts (Darker Grotesque and JetBrains Mono) from Google Fonts, so it needs an internet connection to look right.
+
 ## Features
 
 | Requirement | How it is done |
