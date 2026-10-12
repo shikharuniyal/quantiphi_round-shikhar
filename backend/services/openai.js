@@ -1,6 +1,7 @@
 const OpenAI = require("openai");
 const config = require("../config/config");
 const { getSystemInstruction } = require("./tone");
+const { mockStream } = require("./mockAI");
 
 const client = new OpenAI({ apiKey: config.openaiApiKey });
 
@@ -18,6 +19,10 @@ function buildMessages(history, tone) {
 
 // returns a stream of chunks from OpenAI
 async function streamReply(history, tone) {
+  if (config.useMockAI) {
+    return mockStream(history, tone);
+  }
+
   return client.chat.completions.create({
     model: config.openaiModel,
     messages: buildMessages(history, tone),
@@ -25,4 +30,4 @@ async function streamReply(history, tone) {
   });
 }
 
-module.exports = { streamReply };
+module.exports = { streamReply, buildMessages };
