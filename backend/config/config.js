@@ -11,13 +11,22 @@ if (!fs.existsSync(secretsPath)) {
 
 const secrets = JSON.parse(fs.readFileSync(secretsPath, "utf8"));
 
+// pick the provider from the key, so changing the key is enough
+// OpenAI keys start with "sk-", NVIDIA keys start with "nvapi-"
+let defaultBaseUrl = "https://api.openai.com/v1";
+let defaultModel = "gpt-4o-mini";
+if (secrets.openaiApiKey.startsWith("nvapi-")) {
+  defaultBaseUrl = "https://integrate.api.nvidia.com/v1";
+  defaultModel = "meta/llama-3.2-11b-vision-instruct";
+}
+
 module.exports = {
   openaiApiKey: secrets.openaiApiKey,
   mongoUri: secrets.mongoUri,
   useMockAI: secrets.useMockAI === true, // demo mode without OpenAI credits
-  // any OpenAI-compatible provider works (OpenAI, NVIDIA, ...), just change these in secrets.json
-  openaiBaseUrl: secrets.openaiBaseUrl || "https://api.openai.com/v1",
-  openaiModel: secrets.openaiModel || "gpt-4o-mini",
+  // optional: set these in secrets.json to use another URL or model
+  openaiBaseUrl: secrets.openaiBaseUrl || defaultBaseUrl,
+  openaiModel: secrets.openaiModel || defaultModel,
   port: 5000,
   maxHistoryMessages: 20, // how many old messages are sent to OpenAI
   maxMessageLength: 4000,
