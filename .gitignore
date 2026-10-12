@@ -1,0 +1,3 @@
+node_modules/
+backend/secrets/secrets.json
+*.pdf
