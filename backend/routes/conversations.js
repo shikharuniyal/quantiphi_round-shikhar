@@ -5,9 +5,19 @@ const Conversation = require("../models/Conversation");
 const router = express.Router();
 
 // GET /api/conversations  -> list for the sidebar (without messages)
+// GET /api/conversations?q=word  -> only chats that contain the word (extra feature)
 router.get("/", async (req, res) => {
   try {
-    const list = await Conversation.find()
+    let filter = {};
+    const q = (req.query.q || "").toString().trim();
+    if (q !== "") {
+      // escape special characters so the text is searched as plain text
+      const safe = q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      const regex = new RegExp(safe, "i");
+      filter = { $or: [{ title: regex }, { "messages.content": regex }] };
+    }
+
+    const list = await Conversation.find(filter)
       .select("title createdAt updatedAt")
       .sort({ updatedAt: -1 });
     res.json(list);
