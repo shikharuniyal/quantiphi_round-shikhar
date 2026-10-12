@@ -195,8 +195,8 @@ async function showStreamedReply(streamFunction) {
   // types one character every few milliseconds
   const timer = setInterval(() => {
     if (queue.length > 0) {
-      // type faster when a lot of text is waiting
-      const count = queue.length > 200 ? 5 : 1;
+      // type faster when more text is waiting, so the screen keeps up with the server
+      const count = Math.ceil(queue.length / 20);
       bubble.textContent += queue.slice(0, count);
       queue = queue.slice(count);
       scrollToBottom();
