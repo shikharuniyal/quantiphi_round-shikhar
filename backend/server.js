@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const config = require("./config/config");
@@ -24,6 +25,9 @@ app.get("/api/tones", (req, res) => {
 
 app.use("/api/chat", chatRoutes);
 app.use("/api/conversations", conversationRoutes);
+
+// serve the frontend files from the same server
+app.use(express.static(path.join(__dirname, "..", "frontend")));
 
 mongoose
   .connect(config.mongoUri)
